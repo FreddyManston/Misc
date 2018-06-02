@@ -1,0 +1,7 @@
+1) ax is a 16 bit register and eax is a 32 bit register.
+
+2) The program crashes.
+
+3) IDIV.
+
+4) It reverses it.

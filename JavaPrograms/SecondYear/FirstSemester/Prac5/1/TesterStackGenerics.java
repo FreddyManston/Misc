@@ -1,0 +1,76 @@
+import java.util.*;
+
+public class TesterStackGenerics
+{
+	public static void main (String[] args)
+	{
+		GenericLinkedStack GenericStack = new GenericLinkedStack();
+		Scanner Reddo = new Scanner (System.in);
+		
+		boolean keep_calm_and_carry_on = true;
+		
+		while (keep_calm_and_carry_on)
+		{
+			System.out.print("\nSelect an option from 1 - 6:\n\n1) Check if the stack is empty.\n2) Check if the stack is full.\n3) Place an item on top of the stack.\n4) Take an item off the top of the stack.\n5) Check what the top item in the stack is.\n6) Display the contents of the stack.\n\n7) Exit.");
+			String answ = Reddo.next();
+		
+			if (answ.equals("1"))
+			{
+				System.out.println("----------------------------------------------------------");
+				if (GenericStack.isEmpty())
+					System.out.println("\nStack is empty.");
+				else
+					System.out.println("\nStack is not empty.");
+				System.out.println("\n----------------------------------------------------------");
+			}
+		
+			else if (answ.equals("2"))
+			{
+				System.out.println("----------------------------------------------------------");
+				if (GenericStack.isFull())
+					System.out.println("\nStack is full.");
+				else
+					System.out.println("\nStack is not full.");
+				System.out.println("\n----------------------------------------------------------");
+			}
+		
+			else if (answ.equals("3"))
+			{
+				System.out.print("\nType your input: ");
+				String input = Reddo.next();
+				Object new_input = (Object) input;
+
+				GenericStack.push(new_input);
+			}
+		
+			else if (answ.equals("4"))
+			{
+				Object item = GenericStack.pop();
+			}
+			
+			else if (answ.equals("5"))
+			{
+				System.out.println("----------------------------------------------------------");
+				Object item = GenericStack.head();
+				System.out.println("\nThe top object in the stack is: " + item);
+				System.out.println("\n----------------------------------------------------------");
+			}
+			
+			else if (answ.equals("6"))
+			{
+				System.out.println("----------------------------------------------------------");
+				System.out.print("\nThe stack contains the following items: ");
+				System.out.print(GenericStack);
+				System.out.println("\n----------------------------------------------------------\n");
+			}
+			
+			else if (answ.equals("7"))
+			{
+				System.exit(0);
+			}
+			
+			else
+				System.out.println("Invalid input, bro, try again.");
+		}
+	}
+}

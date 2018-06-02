@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+
+public class LMS {
+	public static void main (String[] args) {
+		try {
+			String[] data = new Scanner(new File("array.data")).useDelimiter("//Z").next().split("\n");
+			ArrayList<Integer> raw_block = new ArrayList();
+			for (int i = 0; i < 100000; i ++) {
+				raw_block.add(Integer.parseInt(data [i]));
+
+				// If the ArrayList contains a full block:
+				if ((i > 0 && i % 99999 == 0) || i == data.length - 1) {
+					System.out.println(i);
+					int[] block = convertIntegers(raw_block.size());
+
+					divAndConq(block, 0, block.length - 1);
+					kadanesMethod(block);
+
+					raw_block.clear();
+				}
+			}
+	
+			/*int[] data = {2, 3, -4, 2};
+			divAndConq(data, 0, data.length - 1);
+			kadanesMethod(data);*/
+		}
+		catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	/* Converts an Array<Integer> into int[] */
+	public static int[] convertIntegers(ArrayList<Integer> integers) {
+    		int[] ret = new int [integers.size()];
+    		for (int i=0; i < ret.length; i++) { ret[i] = integers.get(i).intValue(); }
+    		return ret;
+	}
+	
+	// O(nlogn)
+	public static void divAndConq(int[] arr, int from, int to) {
+		System.out.println(MCS(arr, from, to));
+	}
+	public static int MCS (int[] arr, int from, int to) {
+		if (from > to) { return 0; }
+		else if (from == to) { return(Math.max(0, arr[from])); }
+		else {
+			int middle = (from + to) / 2;
+			int mLeft = MCS(arr, from, middle);
+			int mRight = MCS(arr, middle + 1, to);
+			int mStraddle = maxStraddle(arr, from, to);
+			return Math.max(Math.max(mLeft, mRight), mStraddle);
+		}
+	}
+	public static int maxStraddle(int[] arr, int from, int to) {
+		int middle = (from + to) / 2;
+		int sum = 0, maxRight = 0, maxLeft = 0;
+		for (int i = from; i <= middle; i ++) {
+			sum += arr [middle - i];
+			if (sum > maxLeft) { maxLeft = sum; }
+		}
+		sum = 0;
+		for (int i = middle + 1; i <= to; i ++) {
+			sum += arr [i];
+			if (sum > maxRight) { maxRight = sum; }
+		}
+		return maxLeft + maxRight;
+	}
+	// O(n)
+	public static void kadanesMethod(int[] arr) {
+		int maxEndHere = 0, maxSoFar = 0;
+
+		for (int i = 0; i < arr.length; i ++) {
+			maxEndHere = Math.max(0, maxEndHere + arr[i]);
+			maxSoFar = Math.max(maxSoFar, maxEndHere);
+		}
+		System.out.println(maxSoFar);
+	}
+}

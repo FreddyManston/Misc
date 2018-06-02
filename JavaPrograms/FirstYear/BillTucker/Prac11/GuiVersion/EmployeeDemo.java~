@@ -1,0 +1,200 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class EmployeeDemo implements ActionListener
+{
+	private Employee employees[] = new Employee[10];
+	private int employee_counter = 0;
+	private double avg_salary = 0;
+	
+	private static JFrame frame;
+	private static JButton addEmployee, printEmployees;
+	private static JTextField nameField, salaryField, IDField;
+	private static JTextArea textArea;
+		
+	/**
+	* Main method of the EmployeeDemo class.
+	* Creates a new EmployeeDemo object, then uses the run method on the object, to start the program.
+	*/
+	public static void main (String[] args)
+	{
+		frame = new JFrame("Employee Name Sorter.");
+		frame.setLocationRelativeTo(null);
+		frame.setSize(400, 400);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new FlowLayout());
+		
+		JPanel namePanel = new JPanel();
+		JLabel nameLabel = new JLabel("Name: ");
+		nameField = new JTextField(20);
+		namePanel.add(nameLabel);
+		namePanel.add(nameField);
+		
+		JPanel salaryPanel = new JPanel();
+		JLabel salaryLabel = new JLabel("Salary: ");
+		salaryField = new JTextField(20);
+		salaryPanel.add(salaryLabel);
+		salaryPanel.add(salaryField);
+		
+		JPanel IDPanel = new JPanel();
+		JLabel IDLabel = new JLabel("ID# (13 Digits): ");
+		IDField = new JTextField(20);
+		IDPanel.add(IDLabel);
+		IDPanel.add(IDField);
+		
+		JPanel buttonsPanel = new JPanel();
+		buttonsPanel.setLayout(new BorderLayout(70, 15));
+		addEmployee = new JButton("Add Employee");
+		addEmployee.addActionListener(new EmployeeDemo());
+		printEmployees = new JButton("Finish");
+		printEmployees.addActionListener(new EmployeeDemo());
+		buttonsPanel.add(addEmployee, BorderLayout.WEST);
+		buttonsPanel.add(printEmployees, BorderLayout.EAST);
+		
+		textArea = new JTextArea(15, 30);
+		textArea.setEditable(false);
+		
+		contentPane.add(namePanel);
+		contentPane.add(salaryPanel);
+		contentPane.add(IDPanel);
+		contentPane.add(buttonsPanel);
+		contentPane.add(textArea);
+	}
+	
+	public void actionPerformed(ActionEvent event)
+	{	
+		if (event.getActionCommand().equals("Add Employee"))
+		{
+			try
+			{
+				String text_in_name = nameField.getText();
+				String text_in_salary = salaryField.getText();
+				String text_in_ID = IDField.getText();
+				
+				for (int i = 0; i < text_in_salary.length(); i++)
+					if(!Character.isDigit(text_in_salary.charAt(i)))
+						throw new NumberFormatException("That was not a number.");
+						
+				if(text_in_ID.length() != 13)
+					throw new IDLengthException(text_in_ID + "'s length of " + text_in_ID.length() + " is invalid: it must be 13 characters.");
+					
+				for (int i = 0; i < text_in_ID.length(); i++)
+					if(!Character.isDigit(text_in_ID.charAt(i)))
+						throw new IDCharacterException(text_in_ID + " is an invalid ID #: it contains an illegal character: " + text_in_ID.charAt(i));
+						
+				if(employee_counter == 10)
+				{
+					throw new ArrayFullException("The array was already full. Here is your sorted list:\n");
+				}
+				
+				double salary = Double.parseDouble(text_in_salary); 
+				employees [employee_counter] = new Employee(text_in_name, salary, text_in_ID);
+				employee_counter ++;
+				
+				nameField.setText("");
+				salaryField.setText("");
+				IDField.setText("");
+			}
+			
+			catch(IDLengthException e)
+			{
+				textArea.replaceRange("", 0, 10);
+				textArea.append(e.getMessage() + "\n");
+				nameField.setText("");
+				salaryField.setText("");
+				IDField.setText("");
+			}
+			
+			catch(IDCharacterException e)
+			{
+				textArea.replaceRange("", 0, 10);
+				textArea.append(e.getMessage() + "\n");
+				nameField.setText("");
+				salaryField.setText("");
+				IDField.setText("");
+			}
+			
+			catch(NumberFormatException e)
+			{
+				textArea.replaceRange("", 0, 10);
+				textArea.append(e.getMessage() + "\n");
+				nameField.setText("");
+				salaryField.setText("");
+				IDField.setText("");
+			}
+			
+			catch(ArrayFullException e)
+			{
+				textArea.replaceRange("", 0, 10);
+				textArea.append(e.getMessage() + "\n");
+				
+				Arrays.sort(employees, 0, employee_counter);
+				getAverageSalary();
+				displayEmployees();
+			}
+				
+			catch(Exception e)
+			{
+				textArea.replaceRange("", 0, 10);
+				textArea.append("An exception has occured.\n");
+			}
+		}
+		
+		else if (event.getActionCommand().equals("Finish"))
+		{
+			Arrays.sort(employees, 0, employee_counter);
+			getAverageSalary();
+			displayEmployees();
+		}
+	}
+	
+	/**
+	* getAverageSalary method
+	* Used to calaculate the average salary of all Employee objects in the employees array and then sets the avg_salary instance variable appropriately.
+	*/
+	public void getAverageSalary()
+	{
+		int i = 0;
+		double total_salary = 0;
+		
+		// While loop to run through all current Employees in the employees array and sum their salaries, to get a total salary.
+		while (i < employee_counter)
+		{
+			total_salary = total_salary + employees [i].getSalary();
+			i++;
+		}
+		
+		avg_salary = total_salary / employee_counter;
+	}
+	
+	/**
+	* displayEmployees method
+	* Used to display the details of all Employee objects, as well as how they're salary compares with the averag salary, in the employees array.
+	* Uses the writeOutput method of the Employee class to display each Employees details.
+	*/
+	public void displayEmployees()
+	{
+		System.out.println();
+		
+		for (int i = 0; i < employees.length; i++)
+		{
+			System.out.println("Employee #" + (i + 1));
+			employees [i].writeOutput();
+			
+			if (employees [i].getSalary() > avg_salary)
+				System.out.println("  Above average");
+				
+			else if (employees [i].getSalary() < avg_salary)
+				System.out.println("  Below average");
+				
+			else
+				System.out.println("  Average");
+		}
+	}
+	
+
+}

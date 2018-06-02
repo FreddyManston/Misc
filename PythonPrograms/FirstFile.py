@@ -1,0 +1,6 @@
+myfile = open('test.txt', 'a')
+myfile.write("My first file written from Python")
+myfile.write("---------------------------------")
+myfile.write("Hello, world!")
+myfile.close()
+print("IT HAS BEEN DONE.")

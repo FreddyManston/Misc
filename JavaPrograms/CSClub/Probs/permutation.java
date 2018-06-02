@@ -1,0 +1,53 @@
+public class permutation
+{
+	public static String permutate (String str1)
+	{
+		
+		if (str1.length() <= 1)
+		{
+			return (str1);
+		}
+	
+		else if (str1.length() == 2)
+		{
+			return (str1 + " " + str1.charAt(1) + str1.charAt(0) + " ");
+		}
+		else
+		{
+			int length = str1.length();
+			String last_char = str1.substring(length - 1);
+			str1 = permutate(str1.substring(0, length - 1));
+			
+			String perm = "";
+			for (int i = 0; i < length; i ++)
+			{
+				int j = str1.length() - length;
+				System.out.println(j);
+				while (j >= 0 )
+				{
+					if ((i + 1) % length == 0)
+						perm = perm + last_char + str1.substring(j, j + length);
+					else
+						perm = perm + str1.substring(j, j + length - i - 1) + last_char + str1.substring(j + length - i - 1, j + length);	
+					j = j - length;
+				}
+			}
+			return (perm);
+		}
+	}
+	
+	public static void main (String[] args)
+	{
+		String permute_me = "ABcd";
+		String permutated = permutate(permute_me);
+		
+		int i = 0;
+		int count = 0;
+		while (i < permutated.length() - permute_me.length())
+		{
+			System.out.println(permutated.substring(i, i + permute_me.length()));
+			i += permute_me.length() + 1;
+			count ++;
+		} System.out.println(count);
+	}
+}		

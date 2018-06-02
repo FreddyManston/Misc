@@ -1,0 +1,139 @@
+import java.io.*;
+import java.util.*;
+
+public class Maze
+{
+	Position start, finish;
+	ArrayList visited_positions = new ArrayList();
+	String [][] maze = new String [10][20];
+	
+	// Takes input from MazeInitialiser.txt
+	// Automatically assumes the borders are walls
+	public Maze() throws FileNotFoundException
+	{
+		this.createBorder();
+		this.initialiseInside();
+		
+		// Using file input to initialise the rest of the maze:
+		
+		Scanner read = new Scanner(new File("MazeInitialiser.txt"));
+		
+		read.nextLine();	// To pass the first 2 lines 
+		read.nextLine();	// of the text file.
+
+		String [] start_pos = read.nextLine().split(",");
+		int start_row = Integer.parseInt(start_pos [0]);
+		int start_column = Integer.parseInt(start_pos [1]);
+		start = new Position (start_row, start_column);
+		maze [start_row][start_column] = "!";
+		
+		read.nextLine();	// Pass the next heading in the text file.
+
+		String [] end_pos = read.nextLine().split(",");
+		int end_row = Integer.parseInt(end_pos [0]);
+		int end_column = Integer.parseInt(end_pos [1]);
+		finish = new Position (end_row, end_column);
+		maze [end_row][end_column] = "?";
+		
+		read.nextLine();	// Pass the next heading in the text file.
+
+		while(read.hasNext())
+		{
+			String [] hash_pos = read.nextLine().split(",");
+			int i = Integer.parseInt(hash_pos [0]);
+			int j = Integer.parseInt(hash_pos [1]);
+			
+			maze [i][j] = "#";
+		} read.close();
+	}
+	
+	public Position getStart()
+	{
+		return (start);
+	}
+	
+	public Position getFinish()
+	{
+		return (finish);
+	}
+	
+	public void createBorder()
+	{
+		for (int i = 0; i < 10; i ++)
+		{
+			switch (i)
+			{
+				case 0:
+				case 9:
+					for (int j = 0; j < 20; j ++)
+						maze [i][j] = "#";
+					break;
+			
+				default:
+					maze [i][0] = "#";
+					maze [i][19] = "#";			
+			}
+		}
+		
+	}
+	
+	public void initialiseInside()
+	{
+		for (int i = 0; i < 10; i ++)
+		{
+			if (i != 0 && i != 9)
+			{
+				for (int j = 0; j < 20; j ++)
+				{
+					if (j != 0 && j != 19)
+						maze [i][j] = " ";
+				
+				}
+			}
+		}
+	}
+	
+	public void visit(Position p)
+	{
+		if (!this.wasVisited(p))
+			visited_positions.add(p);
+	}
+	
+	public boolean isClear(Position p)
+	{
+		int i = p.getRow();
+		int j = p.getColumn();
+		
+		if (this.wasVisited(p) || maze [i][j].equals("#"))
+			return (false);
+		else
+			return (true);
+	}
+	
+	public boolean wasVisited(Position p)
+	{
+		if (visited_positions.contains(p))
+			return (true);
+		else	
+			return (false);
+	}
+	
+	public void printMaze()
+	{
+		System.out.println("\n" + this.toString());
+	}
+	
+	public String toString()
+	{
+		String str_maze = "  01234567890123456789\n";
+			
+		for (int i = 0; i < 10; i ++)
+		{ str_maze = str_maze + i + " ";
+			for (int j = 0; j < 20; j ++)
+			{
+				str_maze = str_maze + maze [i][j];
+			} str_maze = str_maze + "\n";
+		} return (str_maze);
+	}
+	
+}

@@ -1,0 +1,32 @@
+<!Doctype html>
+<html lang='en-US'>
+<head>
+</head>
+<body>
+	<!-- Javascript code is written between the <script> tag.-->
+	<script>
+		window.alert("This is how we JavaScript");	// Different syntax is used in the script tag, e.g. '//' does comments.
+	</script>
+
+	<h1>My First Button</h1>
+	<button type="button" onclick="document.getElementById('the_date').innerHTML = Date()"> Click me to display the Date and Time. </button>
+	<p id="the_date"></p>
+
+	<!-- In the following example, an external file, called JavaScriptBasics.js
+	     is used to host the javascript code. This is useful for when working with multiple
+	     webpages.
+	-->
+	<h1>JavaScript can validate inputs</h1>
+	<p>Please input a number between 1 - 10:</p>
+	<input id="numb" type="number">
+	<button type="button" onclick="myFunction()">Submit</button>
+	<p id="Message"></p>
+
+	<script src="JavaScriptBasics.js"></script>
+	<script> document.write("Hello."); </script>
+
+	<button type-"button" onclick="document.write()"> Clean the page </button> <!-- Doing document.write() after page has loaded, will clear the page-->
+	<script> console.log(5 + 7); // Press F12 on the web page and click on the console tab. </script> 
+</body>
+</html>
+

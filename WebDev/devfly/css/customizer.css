@@ -1,0 +1,55 @@
+/*--------------------------------------------------------------
+Typographic styles for the customizer
+--------------------------------------------------------------*/
+.widget-content label{
+	margin: 5px 0;
+}
+textarea{
+	    width: 100%;
+		height: 100px;
+}
+.thumbnail.thumbnail-image {
+    margin-bottom: 10px;
+}
+/**************************************************/
+/** CUSTOM STYLING FOR THE WORDPRESS CUSTOMIZER ***/
+/**************************************************/
+.wp-full-overlay-header .button, .accordion-section-title .button, .wp-picker-input-wrap .button, .customize-control .button{
+  text-transform: uppercase;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 300ms;
+  border-radius: 2px;
+  border: none;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+.wp-full-overlay-header .button:hover, .accordion-section-title .button:hover, .wp-picker-input-wrap .button:hover, .customize-control .button:hover{
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.customize-control-checkbox label{
+  font-weight: 600;
+}
+.customize-control-checkbox span{
+  font-weight: 400;
+}
+.customize-control textarea,
+.customize-control select,
+.customize-control input[type='text'] {
+  box-shadow: none;
+  font-size: 13px;
+  width: 100%;
+}
+.customize-control select{
+  text-transform: capitalize;
+}
+.customize-control  input[type='text'], .customize-control  input[type='number']{
+  height: 30px;
+  border: none;
+  line-height: 20px;
+  border-bottom: 1px solid #ccc;
+  transition: all 300ms;
+}
+.customize-control  input[type='text']:focus, .customize-control  input[type='number']:focus{
+  border-bottom: 3px solid #00d3f3;
+  box-shadow: none;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Feedback Form</title>
+	<style>
+/*	There's many ways to override CSS styles. If you use CSS libraries or external files, they may accidentally override your own CSS.
+	Order of override, from greatest to least importance:
+	* !important
+	* CSS inline style
+	* CSS #id (in order of appearance)
+	* CSS .class (in order of appearance)
+*/
+
+		/* CSS selectors*/
+		body {
+			background-color: lightgrey;
+    		font-family: Monospace;
+    		color: green;
+		}
+        form {text-align: center}
+		h1 {color: black;}
+		p {color: black;}
+
+        .form-format {
+            background-color: white
+        }
+	</style>
+</head>
+
+<body>
+<div class=form-format>
+    <h1>Feedback Form (send mail)</h1>
+
+    <form method="get" action="send_mail_v2.php">
+        <p>
+            <label>First Name
+            <br>
+            <input type="text" name="first_name" required>
+            </label> 
+        </p>
+        <p>
+            <label>Email
+            <br>
+            <input type="email" name="email_address">
+            </label>
+        </p>
+        <p>
+            <label>Comments
+            <br>
+            <textarea name="comments" maxlength="500"></textarea>
+            </label>
+        </p>
+        <p><button>Submit the form</button></p>
+    </form>
+</div>
+
+<div class=form-format>
+    <h1>Feedback Form (test)</h1>
+
+    <form method="get" action="test.php">
+        <p>
+            <label>First Name
+            <br>
+            <input type="text" name="first_name">
+            </label> 
+        </p>
+        <p>
+            <label>Email
+            <br>
+            <input type="email" name="email_address">
+            </label>
+        </p>
+        <p>
+            <label>Comments
+            <br>
+            <textarea name="comments" maxlength="500"></textarea>
+            </label>
+        </p>
+        <input class="btn" type="submit" value="Submit">
+        <input class="btn" type="reset" value="Reset">
+    </form>
+</div>
+</body>
+</html>

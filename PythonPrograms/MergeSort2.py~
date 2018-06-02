@@ -1,0 +1,102 @@
+import random
+import time
+
+def merge_sorted (list1, list2):
+	sortedlist = list()
+
+	index = 0									#}
+	for i in range(len(list1)):							#}
+		smaller = True								#}
+		for item in list2:							#}
+			if (list1[index] > item):					#}
+				smaller = False						#}Pops and appends the smallest values, out of list1 and 
+				break							#}list2, in list1 to the sorted list.
+		if(smaller == True):							#}
+			swop = list1.pop(index)						#}
+			sortedlist.append(swop)						#}
+		else:									#}
+			index = index + 1						#}
+
+	index = 0									#}
+	for i in range(len(list2)):							#}	
+		smaller = True								#}
+		for item in list1:							#}
+			if (list2[index] > item):					#}
+				smaller = False						#}Pops and appends the smallest values, out of list1 and
+				break							#}list2, in list2 to the sorted list.
+		if(smaller == True):							#}
+			swop = list2.pop(index)						#}
+			sortedlist.append(swop)						#}
+		else:									#}
+			index = index + 1						#}
+
+	if (len(list1) != 0 or len(list2) != 0): 					#}
+		addto = merge_sorted (list1, list2)					#}If any of the lists aren't empty from all the popping, 
+		for i in addto:								#}then function recures.
+			sortedlist.append(i)						#}
+		
+	return sortedlist
+
+
+def sort_method2 (list1):
+	list1new = list1[::]
+	uneven = False
+
+	if (len(list1new) == 0 or len(list1new) == 1): #Checks whether or not the list has 2 or more items.
+		return list1new
+	else:
+		if (len(list1new) % 2 != 0):						#}If the list is not perfectly half-able,
+			uneven = True							#}then pops last element and
+			last = list1new.pop()						#}stores it in a variable called last.
+
+		left = list1new[0:int(len(list1new)//2)] #First half of list
+		right = list1new[int(len(list1new)//2):] #Second half of list
+		
+		if (len(left) != 2 and len(right) != 2):				#}If the two halves aren't split into two			
+			left = sort_method2(left)					#}elements, function recures.
+			right = sort_method2(right)					#}
+			
+		else:
+			#print (left, "   ", right)
+			if (left[0] > left[1]): #Sorts elements in left half
+				swop = left.pop(0)
+				left.append(swop)
+			if (right[0] > right[1]): #Sorts elements in right half
+				swop = right.pop(0)
+				right.append(swop)
+			if (uneven == True): #If the list was uneven, puts value in variable 'last' into left list, in a sorted position
+				if (last < left[0]):
+					left.insert(0, last)
+				elif (last > left[0] and last < left[1]):
+					left.insert(1, last)
+				else:
+					left.append(last)
+			print (merge_sorted(left,right))
+			return merge_sorted(left, right)
+
+		if (uneven == True): #Places value in variable 'last' into sorted list, in sorted position.
+			if (last < left[0]):
+				left.insert(0, last)
+			else:
+				for i in range(len(left)):
+					if (last > left[i]):
+						left.insert(i+1, last)
+					break
+
+	return merge_sorted(left, right)
+		
+start = time.time()		
+rng = random.Random()	
+#list2 = [1,2,5,6,9]
+#list3 = [3,4,7,8]
+#print(merge_sorted(list2, list3))
+ 
+list1 = list(range(100,111))
+rng.shuffle(list1)
+#list1 = [2427,3339,3786,7152,7062,4526,3566,2742,5195,2540]
+print (sort_method2(list1))
+print (list1)
+stop = time.time()
+
+print ("The time taken to sort this list was: ", (stop-start), "seconds.")
+

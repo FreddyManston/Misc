@@ -1,0 +1,19 @@
+// package pracs;
+
+
+public class DLinkedListTest 
+{	
+	public DLinkedListTest()
+	{
+		DNode a = new DNode();
+        	a.setElement("A");
+        	
+        	a = a.getNext();
+        	System.out.print(a);        
+	}
+	
+	public static void main(String[] args)
+	{
+		new DLinkedListTest();
+	}
+}

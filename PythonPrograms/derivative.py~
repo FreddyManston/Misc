@@ -1,0 +1,61 @@
+from math import sin,cos,pi
+
+def f(x):
+	return sin(x)
+	
+def derivative(x):
+
+	h = 0.00000000000001
+	rise = f(x+h)-f(x)
+	slope = rise/h
+
+	return slope
+
+for a in range(10):
+	x = a*pi/10
+	#print("My derivative of sinx: ", derivative(x), "\nActual derivative of sinx:,", cos(x), "\n") 
+	
+
+
+def g(x):
+	return pow(x,4)
+
+	
+def derivativepoly(x):
+
+	h = 1/1000000000
+	rise = (g(x+h)-g(x))/h
+	#slope = rise/h
+
+	return rise
+
+
+def testpow(x):
+	return 4*x**3
+
+for b in range(10):
+	s = b*pi/10
+	print("My Derivative of x**4: ", derivativepoly(s), "\nActual derivative of x**4: ", testpow(s), "\n")
+
+
+
+
+
+
+
+
+
+	
+			
+		
+
+
+
+
+	
+
+
+
+
+
+

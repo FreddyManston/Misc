@@ -1,0 +1,124 @@
+public class Partitioning
+{
+	public static void main (String[] args)
+	{
+
+		int [] array1 = {1, 3, 2, 5, 9, 6, 5, 1};
+		int [] array2 = new int [1000];
+		for (int i = 0; i < 1000; i ++) {array2 [i] = (int) (Math.random() * 1000);}
+		quickSort(array2, 0, array2.length - 1);
+		//System.out.println(getKSmallest(array1, 5, 0, array1.length - 1) + "\n");
+		//System.out.println(getMedian(array1, 0, array1.length - 1) + "\n");
+
+		for (int i = 0; i < array2.length; i ++) { System.out.print(array2 [i] + " "); }
+		System.out.println();
+	}
+
+	public static int partition(int[] array, int from, int to)
+	{
+		int pivot = array [from];
+		int pivot_index = from; 
+		int index_count = from;
+		int temp = 0;
+
+		for (int i = from + 1; i <= to; i ++) {
+			if (array [i] < pivot) {
+				temp = array [index_count];
+				array [index_count] = array [i];
+				array [i] = temp;
+
+				if (index_count == pivot_index) {
+					pivot_index = i;
+				}
+				index_count ++;
+			}
+		}
+		
+		if (pivot_index != index_count) {
+			swap(array, index_count, pivot_index);
+			pivot_index = index_count;
+		}		
+
+		return pivot_index;	
+	}
+
+	public static int DoddsPartition(int[] A, int from, int to) {
+		int lower = from + 1
+		int upper = to
+		int pivot = A [from];
+
+		while (lower < upper) {
+			while (A [lower] < pivot && lower < upper) { lower ++; }
+			while (A [upper] >= pivot && upper > lower) { upper --; }	// Bug at A [upper] >= pivot. If just > , then runs longer but does sorting properly. If >= , then runs real quick but some elements aren't partitioned properly
+			if (lower < upper) { swap(A, lower, upper); }
+		}
+		swap(A, from, lower - 1);
+		return upper - 1; 
+	}
+	
+	public static void swap(int[] A, int a, int b) {
+		int temp = A [a];
+		A [a] = A [b];
+		A [b] = temp;
+	}
+	
+	public static void quickSort (int [] array, int from, int to) {
+		if (from < to && !isSorted(array)) {
+			int pivot_index = DoddsPartition(array, from, to);
+			quickSort(array, from, pivot_index - 1);
+			quickSort(array, pivot_index + 1, to);
+		}
+	}
+
+	public static boolean isSorted(int [] array)
+	{
+		boolean sorted = true;
+		
+		for (int i = 1; i < array.length; i ++)
+			if (array [i] < array [i - 1])
+			{	sorted = false;
+				break; }
+		return sorted;
+	}
+
+	// Method does not account for duplicate values in the array.
+	// k value does not conform to zero subscripting.
+	public static int getKSmallest(int [] array, int k, int from, int to)
+	{
+		if (k < 1 || k > array.length)
+		{
+			System.out.println("Error: k value out of array index bounds.");
+		}
+		
+		int pivot_index = partition(array, from, to);
+		
+		if (pivot_index + 1 < k)
+		{
+			return getKSmallest(array, k, pivot_index + 1, to);
+		}
+		else if (pivot_index + 1 > k)
+		{
+			return getKSmallest(array, k, from, pivot_index - 1);
+		}	
+		else 
+		{ 
+			return array [pivot_index]; 
+		}
+		
+	}
+
+	public static int getMedian (int [] array, int from, int to)
+	{
+		int median = 0;
+		if (array.length % 2 == 0)
+		{
+			median = (getKSmallest(array, array.length/2, from, to) + getKSmallest(array, (array.length/2) + 1, from, to)) / 2;
+		}
+		else
+		{
+			median = getKSmallest(array, array.length / 2, from, to);
+		}	
+
+		return median;
+	}
+}

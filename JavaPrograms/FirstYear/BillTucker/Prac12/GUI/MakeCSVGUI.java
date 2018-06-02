@@ -1,0 +1,229 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
+
+public class MakeCSVGUI implements ActionListener
+{
+	private static ObjectInputStream inputStream = null;
+	private static PrintWriter outputStream = null;
+	private static Employee employees[] = new Employee [10];
+	private static String datFile, CSVFile;
+	private static int index = 0;
+	
+	private static JPanel CSVFilePanel, datFilePanel;
+	private static JButton datButton, CSVButton;
+	private static JTextField datFileField, CSVFileField;
+	private static JTextArea textArea;
+	
+	public static void main (String[] args)
+	{
+		// Creating the JFrame
+		JFrame frame = new JFrame("Employee File Transporter.");
+		frame.setSize(800, 510);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+
+		// Setting up the JFrame's ContentPane. 
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));	//Different layouts, with different specs are available in java. Read up at http://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html
+		contentPane.setBackground(Color.gray);
+
+		// Creating a JTextArea
+		textArea = new JTextArea("", 10, 40);
+		JScrollPane scrollPane = new JScrollPane();	// Provides a scroll function to textArea
+		textArea.add(scrollPane);
+		textArea.setEditable(false);	// Prevents user from editing data inside textArea
+		textArea.setBackground(Color.black);
+		textArea.setForeground(Color.orange);
+		textArea.setFont(new Font("Serif", Font.ITALIC, 16));
+		textArea.setLineWrap(true);	// Allows for text wrapping in textArea.
+		textArea.setWrapStyleWord(true);	// Wraps text by word, instead of by character.
+		
+		// Setting up the .dat file name input:
+		datFilePanel = new JPanel();  // . . . PUT IN A LAYOUT . . .
+		JLabel datFileLabel = new JLabel("Name of .dat file: ");
+		datFileField = new JTextField(20);
+		datButton = new JButton("Confirm .dat");
+		datButton.setBackground(Color.black);
+		datButton.setForeground(Color.white);
+		datButton.setFont(new Font("Text", Font.ITALIC, 12));
+		datButton.setToolTipText("Press button to confirm the name of the file. (Or press alt+x.)");
+		datButton.setMnemonic('x');
+		datButton.setVisible(true);
+		datButton.addActionListener(new MakeCSVGUI());
+		datFilePanel.add(datFileLabel);
+		datFilePanel.add(datFileField);
+		datFilePanel.add(datButton);
+		datFilePanel.setVisible(true);
+		
+		// Setting up the .csv file name input:
+		CSVFilePanel = new JPanel();  // . . . PUT IN A LAYOUT . . .
+		JLabel CSVFileLabel = new JLabel("Name of .csv file: ");
+		CSVFileField = new JTextField(20);
+		CSVButton = new JButton("Confirm .csv");
+		CSVButton.setBackground(Color.black);
+		CSVButton.setForeground(Color.white);
+		CSVButton.setFont(new Font("Text", Font.ITALIC, 12));
+		CSVButton.setToolTipText("Press button to confirm the name of the file. (Or press alt+x.)");
+		CSVButton.setMnemonic('x');
+		CSVButton.setVisible(true);
+		CSVFilePanel.add(CSVFileLabel);
+		CSVFilePanel.add(CSVFileField);
+		CSVFilePanel.add(CSVButton);
+		CSVFilePanel.setVisible(false);		
+		
+		contentPane.add(datFilePanel);
+		contentPane.add(CSVFilePanel);
+		contentPane.add(textArea);
+		
+		Arrays.sort(employees);
+	}
+	
+	public void actionPerformed(ActionEvent event)
+	{
+		if (event.getActionCommand().equals("Confirm .dat"))
+		{
+			try
+			{
+				if (! new File(datFileField.getText()).exists())
+					throw new FileNotFoundException();
+				if (! new File(datFileField.getText()).canRead())
+				{	
+					datFileField.setText("can not write to the file " + datFileField.getText());
+					datFileField.addMouseListener(new MouseAdapter()
+					{
+						public void mouseClicked(MouseEvent event)
+						{
+							datFileField.setText("");
+						}
+					});
+				}
+				inputStream = new ObjectInputStream(new FileInputStream(datFileField.getText()));
+				
+				boolean keep_calm_and_carry_on = true;
+				// While loop to keep reading objects from the binary file until the list is full or there are no more objects to read.
+				while (keep_calm_and_carry_on)
+				{
+					if (index >= 10)
+						throw new ArrayFullException();
+						
+					employees [index] = (Employee) inputStream.readObject();
+					index++;
+				}
+				inputStream.close();
+				Arrays.sort(employees, 0, index);
+				datButton.setVisible(false);
+				CSVButton.setVisible(true);
+			}
+			
+			// FIleNotFoundException catch block asks for a new binary file name and calls the ReadData method again with the new name
+			catch (FileNotFoundException e)
+			{
+				datFileField.setText("Input file " + datFileField.getText() + " does not exist.");
+				datFileField.addMouseListener(new MouseAdapter()
+				{
+					public void mouseClicked(MouseEvent event)
+					{
+						datFileField.setText("");
+					}
+				});
+			}
+			// EOFException catch block sorts current employee list and proceeds to call the WriteData method
+			catch (EOFException e)
+			{			
+				Arrays.sort(employees, 0, index);
+				datButton.setVisible(false);
+				CSVButton.setVisible(true);
+			}
+			catch (ClassNotFoundException e)
+			{
+				System.out.println("ClassNotFoundException");
+				System.exit(0);
+			}
+			catch (InvalidClassException e)
+			{
+				System.out.println("InvalidClassException");
+				System.exit(0);
+			}
+			catch (OptionalDataException e)
+			{
+				System.out.println("OptionalDataException");
+				System.exit(0);
+			}
+			catch (IOException e)
+			{
+				System.out.println("IOException");
+				System.exit(0);
+			}
+			// ArrayFullException catch block sorts current employee list and proceeds to call the WriteData method
+			catch (ArrayFullException e)
+			{
+				Arrays.sort(employees, 0, index);
+				datButton.setVisible(false);
+				CSVButton.setVisible(true);
+			}
+		}
+			
+		else if (event.getActionCommand().equals("Confirm .csv"))
+		{
+			try
+			{
+				if (! new File(CSVFileField.getText()).exists())
+					throw new FileNotFoundException();
+				if (! new File(CSVFileField.getText()).canWrite())
+				{	
+					CSVFileField.setText("can not write to the file " + CSVFileField.getText());
+					CSVFileField.addMouseListener(new MouseAdapter()
+					{
+						public void mouseClicked(MouseEvent event)
+						{
+							CSVFileField.setText("");
+						}
+					});
+				}
+				
+				outputStream = new PrintWriter(CSVFileField.getText());
+				
+				int i = index;
+				outputStream.println("Name,Salary,ID Number");
+				textArea.append("Name,Salary,ID Number\n");
+				while (i <= index)
+				{
+					outputStream.println(employees[i].getName() + "," + employees[i].getSalary() + "," + employees[i].getID());
+					textArea.append(employees[i].getName() + "," + employees[i].getSalary() + "," + employees[i].getID() + "\n");
+					i++;
+				}
+				outputStream.close();
+				textArea.append("End of program.");
+			}
+			
+			catch (FileNotFoundException e)
+			{
+				CSVFileField.setText("Output file " + CSVFileField.getText() + " does not exist.");
+					CSVFileField.addMouseListener(new MouseAdapter()
+					{
+						public void mouseClicked(MouseEvent event)
+						{
+							CSVFileField.setText("");
+						}
+					});
+			}
+			/*catch (IOException e)
+			{
+				System.out.println("IOException");
+				System.exit(0);
+			}*/
+			catch(Exception e)
+			{
+			}
+		}
+			
+		else
+		{
+		System.out.println("boton incerrecto, Amigo");
+		}
+	}
+}

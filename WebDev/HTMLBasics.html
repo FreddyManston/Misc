@@ -1,0 +1,106 @@
+<!-- This is just a basic example of how to code in html.
+      the main source of information is http://www.w3schools.com/html/
+-->
+
+<!Doctype html>
+<html lang="en-US">
+
+<!-- The HTML <head> element contains the meta data. Meta data isn't displayed in the web page document, e.g. <title> 
+     element is displayed in the browser tab, not the document, etc.-->
+<head>
+  <title> This is where the page title goes.</title>
+  <meta charset="UTF-8">  <!--Define the character set-->
+</head>
+
+<!-- This is the body of the HTML document.-->
+<body style="background-color:lightblue">
+
+  <h1>Primary Heading</h1>  <!--h1 to h6 refers to the priority of the heading, not the order of the headings-->
+  <p>This is a plain heading and paragraph.</p>
+
+  <h2 style="color:blue; font-family:verdana; font-size:300%; border:5px solid black; text-align:center">Secondary Heading</h2>
+  <p style="color:red; font-family:courier; font-size:70%; border:1px solid yellow; text-align:right">This is a styled up heading and pragraph</p>
+
+  <h2 style="color:purple">Secondary Heading: Paragraphs can have titles.</h2>
+  <p title="This is a titled paragraph." style="color:green">
+  Can you see the title? No?
+  Just <b>move the cursor over this paragraph</b>
+  </p>
+
+  <pre style="color:brown">  
+  Now I have <del>preedited</del> preformatted text.
+    Spaces abd tabs in the <b>.html</b> file will show on the web page
+      as is.
+  Below is a list of text formatting elements, in tabular form:
+  </pre>
+
+  <!-- Creating a table to host examples of the text formatting tags-->
+  <h2><ins>HTML Text Formatting Elements</ins></h2>
+  <table class="reference notranslate">
+    <tr>
+      <th style="width:30%;text-align:left"><ins>Tag</ins></th>  <th style="text-align:left"><ins>Description</ins></th>
+    </tr>
+    <tr>
+      <td>&lt;b&gt;</td>  <td>Defines <b>bold</b> text</td>
+    </tr>
+    <tr>
+      <td>&lt;strong&gt;</td>  <td>Defines <strong>important</strong> text</td>
+    </tr>
+    <tr>
+      <td>&lt;em&gt;</td>  <td>Defines <em>emphasized</em> text&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&lt;i&gt;</td>  <td>Defines <i>italic</i> text</td>
+    </tr>
+    <tr>
+      <td>&lt;small&gt;</td>  <td>Defines <small>smaller</small> text</td>
+    </tr>
+    <tr>
+      <td>&lt;sub&gt;</td>  <td>Defines <sub>subscripted</sub> text</td>
+    </tr>
+    <tr>
+      <td>&lt;sup&gt;</td>  <td>Defines <sup>superscripted</sup> text</td>
+    </tr>
+    <tr>
+      <td>&lt;ins&gt;</td>  <td>Defines <ins>inserted</ins> text</td>
+    </tr>
+    <tr>
+      <td>&lt;del&gt;</td>  <td>Defines <del>deleted</del> text</td>
+    </tr>
+    <tr>
+      <td>&lt;mark&gt;</td>  <td>Defines <mark>marked/highlighted</mark> text</td>
+    </tr>
+	<tr>
+	  <td>&lt;q&gt;</td>  <td>Defines a <q>quoted</q> text</td>
+	</tr>
+	<tr>
+	  <td>&lt;blockquote&gt;</td>  <td>This is generally used to quote a large piece of text. 
+	                                   <blockquote cite="http://www.putQuotesSourceURLHere.org">
+									               It tab spaces the quote, like this.
+									               Note that tabs and spaces in the html file, in this context, won't
+												   be visible in the web document.
+												   However, if &lt;blockquote&gt; is used in a &lt;pre&gt; tag context, for example,
+												   the tabs and spaces will be present.
+									   </blockquote> 
+									   </td>
+	</tr>
+	<tr>
+	  <td>&lt;abbr&gt;</td>  <td>Defines an abbreviation, e.g. <abbr title="Laugh Out Loud">lol</abbr>.
+	                             Has no effect on web document, but provides useful information to browsers, 
+								 translation systems and search-engines.
+							 </td>
+	</tr>
+	<tr>
+	  <td>&lt;bdo&gt;</td>  <td>Bi-Direction Override. Used to override text direction. E.g. <bdo dir="rtl">right to left</bdo></td>
+	</tr>
+  </table>
+  
+  <hr /> <!-- Horizontal Rules tag. Creates a horizontal line in the HTML page. -->
+  <h3>Tertiary Heading: Miscellanous stuff.</h3>
+  <img src="/home/juan/Pictures/Ubuntu Tree.jpg" alt="Ubuntu Tree" width="600" height="400"> <!-- alt attribute specifies text to be used when an
+  											                                                      HTML element can't be displayed.-->
+  <br /> 	<!-- A line break element. The '/' is the closing tag, i.e. starting and closing tag in one.-->
+  <a href="http://www.466453.com"> Click here to go to Google homepage.</a> <!--href attribute specifies the link's destination-->
+
+</body>
+</html>

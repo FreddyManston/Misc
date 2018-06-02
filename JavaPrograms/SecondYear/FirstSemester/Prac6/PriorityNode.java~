@@ -1,0 +1,41 @@
+public class PriorityNode
+{
+	protected QueueElement element;
+	protected Node next;
+	
+	// Creates a node with null references to its element and next node.
+	public PriorityNode() 
+	{
+		this(null, null);
+	}
+
+	// Creates a node with the given element and next node.
+	public PriorityNode(QueueElement s, PriorityNode n) 
+	{
+ 		element = s;
+ 		next = n;
+	}
+
+	// Accessor methods:
+	public QueueElement getElement() 
+ 	{
+		return element;
+	}
+
+	public PriorityNode getNext() 
+	{
+		return next;
+	}
+
+	// Modifier methods:
+	public void setElement(QueueElement s) 
+	{
+		element = s;
+	}
+
+	public void setNext(PriorityNode n) 
+	{
+		next = n;
+	}
+	
+}

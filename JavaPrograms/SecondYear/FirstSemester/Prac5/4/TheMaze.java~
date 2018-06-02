@@ -1,0 +1,170 @@
+import java.util.*;
+import java.io.*;
+
+public class TheMaze
+{
+	int[][]mazeArr = new int[21][33];
+	Position start,finish;
+	boolean[][]visited = new boolean[21][33];
+   
+	private void setVisitations(boolean b) {
+		for(int i = 0 ; i < 21 ; i++) {
+			for(int j = 0; j < 33 ; j++) {
+				visited[i][j] = b;
+			}
+		}
+	}
+   
+	public TheMaze() {}
+   
+	public TheMaze(String filename) {
+		try {
+			Scanner inputStream = new Scanner(new File(filename));
+			setVisitations(false);
+			for(int i = 0; i < 21 ; i++) {
+				String line = inputStream.nextLine();
+				String[]strArr = line.split(",");
+               
+				for(int j = 0; j < 33 ; j++) {
+					if(strArr[j].equals("0") || strArr[j].equals("1")) { mazeArr[i][j] = Integer.parseInt(strArr[j]); }
+					else if(strArr[j].equals("2")) {
+						start = new Position(i,j);
+						mazeArr[i][j] = 0;
+					}
+					else if(strArr[j].equals("3")) {
+						finish = new Position(i,j);
+						mazeArr[i][j] = 0;
+					}
+				}
+			}
+		}
+		catch(FileNotFoundException e) { System.out.println("File not found"); }
+	}
+   
+	public void visit(Position p) { visited[p.getRow()][p.getColumn()] = true; }
+   
+	public boolean wasVisited(Position p) {
+		if(visited[p.getRow()][p.getColumn()] == true) { return true; }
+    	else { return false; }
+    }
+   
+	public boolean isClear(Position p) {
+		if(mazeArr[p.getRow()][p.getColumn()] == 0 && wasVisited(p) == false) { return true; }
+    	else { return false; }
+	}
+   
+	public void setStart(Position s)
+   {
+      start = s;
+   }
+   
+	public void setFinish(Position f)
+   {
+      finish = f;
+   }
+   
+   public Position getFinish()
+   {
+      return finish;
+   }
+   
+   public Position getStart()
+   {
+      return start;
+   }
+   
+   public String toString()
+   {
+      boolean first = false;
+      String temp = "";
+      
+      for(int i = 0 ; i < 21 ; i++)
+      {
+         for(int j = 0 ; j < 33 ; j++)
+         {
+            if(mazeArr[i][j] == 1)
+            {
+               temp += "#";//\t
+            }
+            
+            if(wasVisited(new Position(i,j)) == true)
+            {
+               if(start.getRow() == i && start.getColumn() == j)
+               {
+                  temp += "s";//\t
+               }
+               else if(finish.getRow() == i && finish.getColumn() == j)
+               {
+                  temp += "f";//\t
+               }
+               else
+               {
+                  temp += ".";//\t
+               }
+            }
+            else if((wasVisited(new Position(i,j)) == false) && (mazeArr[i][j] == 0))
+            {
+               temp += " ";//\t
+            }
+         }
+         temp += "\n";
+      }
+      
+      
+      return temp;
+   }
+   
+   public void printMaze()
+   {  
+      System.out.println(toString());   
+   }
+   
+   public static void run()
+   {
+      TheMaze maze = new TheMaze("M4.txt");
+      Position goal = maze.getFinish();
+      Position square = null;
+      GenericLinkedStack2 path = new GenericLinkedStack2();
+      
+      path.push(maze.getStart());
+      System.out.println(maze.getStart());
+      while(!path.isEmpty())
+      {
+         square = (Position)path.pop();
+         if(maze.wasVisited(square) == false)
+         {
+            maze.visit(square);
+         }
+         if(square.equals(goal))
+         {
+            maze.printMaze();
+            System.exit(0);
+         }
+         System.out.println(square);
+         if(maze.isClear(square.getNewPosition("NORTH")) == true)
+         {
+            path.push(square.getNewPosition("NORTH"));
+         }
+         if(maze.isClear(square.getNewPosition("SOUTH")) == true)
+         {
+            path.push(square.getNewPosition("SOUTH"));
+         }
+         if(maze.isClear(square.getNewPosition("EAST")) == true)
+         {
+            path.push(square.getNewPosition("EAST"));
+         }
+         /*if(maze.isClear(square.west()) == true)
+         {
+            path.push(square.west());
+         }*/
+      }
+      System.out.println(square);
+      maze.printMaze();
+   
+   }
+   
+   public static void main (String[] args)
+   {
+   	run();
+   }
+}

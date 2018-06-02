@@ -1,0 +1,80 @@
+\documentclass[a4wide,11pt]{article}
+% Try the next 
+%\documentclass[a4wide,11pt]{report}
+% You need to insert some chapters for a report, or a thesis using
+% \chapter{Title of the Chapter}\label{chapter:aname}
+%  
+\usepackage{latexsym,graphicx,wrapfig,psfrag,amssymb}
+\usepackage[round]{natbib}
+
+\begin{document}
+%\twocolumn     % Remove the comment '%' character to get a double column article
+\author{
+	Name Surname\\
+	Department of Computer Science\\
+	University of the Western Cape\\
+	\vspace{5pt}
+	{\small 1234567@myuwc.ac.za}}
+\title{The Effects of Jittering Huffman Code}
+\maketitle
+\begin{abstract}
+Put a short summary of your results here.
+\end{abstract}
+\section{Introduction}
+\label{section:introduction}
+Say what it is that you are reporting about.  Huffman discovered his algorithm while he 
+was a graduate student and published it as a conference paper~\cite{huffman52}.
+\section{Experiment}
+\label{section:experiment}
+Explain the experiment that you ran. Tabulate some of your results here.
+\begin{table}[h]
+\caption{Size of error and length of unrecovered code after error}
+\label{table:recovery}
+\begin{center}
+\begin{tabular}{rl|p{36pt}|p{36pt}}
+\hline
+Error in bits & Length of unrecovered code & See how this is typeset & See how this is typeset \\
+\hline
+            8 & your figures\\
+           16 & your figures\\
+           32 & your figures\\
+           24 & your figures\\
+           40 & your figures\\
+           48 & your figures\\
+           64 & your figures\\
+\hline
+      Average & average      \\
+Standard deviation & std. dev.\\        
+\hline
+\end{tabular} 
+\end{center}
+\end{table}
+Say something about Table~\ref{table:recovery} on Page~\pageref{table:recovery}.  % Notice how the reference was done.
+\section{Conclusion}
+\label{section:conclusion}
+Say in summary what the results were. Say something like:  
+
+Huffman code appears to be very resilient to noise.  We have found that the
+code recovers within a mean of $xxx$ characters, with a standard deviation
+of $\sigma = xxx.xx$ characters after encountering an 8-bit error. 
+When encountering a 16-bit contiguous error it seems to recover similarly quickly.
+The size of the errors do not seem to have any bearing on recovering subsequent code.
+
+Say what happens when 24-, 32-, 40-, 48- and 64-bit errors are made.
+
+% To include tex files simply do
+\include{profilehuffman}% .tex must be omitted
+\noindent The profile of David Huffman comes from~\cite{stix91}
+
+% Pleasse do not use \nocite{*}.  It causes all the items in the bibliography to 
+% be cited.
+%\nocite{*}
+\bibliographystyle{plainnat}
+\bibliography{jitteredhuffmancode}  % This comes from the file: huffmanwithnoise.bib
+% To check if your bibliography is correct run the command:
+% bibtex huffmanwithnoise
+% If this runs without any error messages your bibliography has no errors.
+\vfill
+\pagebreak
+% \tableofcontents   % Not necessary for a small document, or an article
+\end{document}

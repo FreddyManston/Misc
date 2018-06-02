@@ -1,0 +1,105 @@
+public class oHash
+{
+	private int m;
+	private int [][] table; // key value in row 1 (i = 0) and data value in row 2 (i = 1)
+
+	public oHash (int num_chairs)
+	{
+		m = num_chairs;
+		table = new int [2][m + 1];
+	}
+
+	public int hash (int data)
+	{
+		return (((data * 3) % m) + 1);
+	}
+
+	public void insert (int key, int data)
+	{
+		if (!isFull() && !isInTable(key))
+		{	
+			int index = hash (key);
+
+			while (table [0][index] != 0)
+				index = ((index + 1) % m) + 1; // Get rid of zero indexing
+
+			table [0][index] = key;
+			table [1][index] = data;
+		}
+		else
+			System.out.println("Can't insert a duplicate/in a full table.");
+	}
+
+	public int lookup (int key)
+	{
+		if (isInTable(key))
+		{
+			int index = hash (key);
+
+			while (table [0][index] != key)
+				index = ((index + 1) % m) + 1; // Same algorithm as in insert method
+
+			return table [1][index];
+		}
+		else
+		{
+			System.out.println("Not in table.");
+			return -1;
+		}
+	}
+
+	public int remove (int key)
+	{
+		if (isInTable(key))
+		{
+			int index = hash (key);
+
+			while (table [0][index] != key)
+				index = ((index + 1) % m) + 1; // Same algorithm as in insert method
+
+			int remove_me = table [1][index];
+			table [0][index] = 0;
+			table [1][index] = 0;
+
+			return remove_me;
+		}
+		else
+		{
+			System.out.println("Not in table.");
+			return -1;
+		}
+	}
+
+	public boolean isInTable (int key)
+	{
+		for (int i = 1; i <= m; i ++)
+		{
+			if (table [0][i] == key)
+				return true;
+		}
+
+		return false;
+	}
+
+	public boolean isFull ()
+	{
+		for (int i = 1; i <= m; i ++)
+		{
+			if (table [0][i] == 0)
+				return false;
+		}
+
+		return true;
+	}
+
+	public boolean isEmpty ()
+	{
+		for (int i = 1; i <= m; i ++)
+		{
+			if (table [0][i] != 0)
+				return false;
+		}
+
+		return true;
+	}
+}

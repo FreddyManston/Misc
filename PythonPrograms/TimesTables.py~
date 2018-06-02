@@ -1,0 +1,25 @@
+#Author: Josh
+#Name: Times Tables
+#Details: Gives the person the times table of their choice, up to a number of their choice.
+
+times = int(input("What number are we going to count in: "))
+towhat = int(input("Till what number are we going to count: "))
+
+num = times
+index = 1
+print("\nThis is the times table of " + str(times) + ": \n---------------------------------")
+
+while (num <= towhat):
+	print (str(index) + " x " + str(times) + " = " + str(num))
+	num = int(num) + int(times)
+	index = int(index) + 1
+
+check = num - times
+
+if (check == towhat):
+	print ("\nThat's the " + str(times) + " times table, up until " + str(towhat) + ".")
+else:
+	print ("\n" + str(towhat) + " is not in the " + str(times) + " times table.")
+
+amount = check // int(times)
+print ("There are " + str(amount) + " numbers in this set.")

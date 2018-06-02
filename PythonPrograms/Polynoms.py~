@@ -1,0 +1,29 @@
+P = [2, 3]
+Q = [2, -4]
+
+def add_poly (P, Q):
+	newpoly = []
+
+	if (len(P) < len(Q)):
+		for i in range(len(P)):
+			variable = P[i] + Q[i]
+			newpoly.append(variable)
+			last_i = i
+		for i in range((last_i + 1), len(Q)):
+			newpoly.append(Q[i])
+				
+
+	elif (len(Q) <= len(P)):
+		for i in range(len(Q)):
+			variable = Q[i] + P[i]
+			newpoly.append(variable)
+			last_i = i
+		for i in range((last_i + 1), len(P)):
+			newpoly.append(P[i])
+
+	return newpoly
+		
+
+new = add_poly(P, Q)
+
+print(new)

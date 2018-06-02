@@ -1,0 +1,120 @@
+# dfadata.text
+# DFA 1.
+# DFA = {(0+1)(0+1)}
+#
+D;    0;      1;  finals.
+q1;  q2;     q2;    .
+q2;  q3;     q3;    .
+q3;  q4;     q4;   *.
+q4;  q4;     q4;    .
+#
+00
+#accepts
+0010
+0001
+01
+#accepts
+10
+#accepts
+1001
+11
+#accepts
+111111111111
+00
+#accepts
+1101
+1110
+01
+#accepts
+0101
+0110
+1010
+10
+#accepts
+11
+#accepts
+#
+# Notes:
+# Lines starting with # are ignored.
+# Each line of the DFA ends with a period.
+# Each row gives the current state.
+# Entries are separated by semicolons.
+# Each column contains entry for given input.
+# Each entry has the next state,
+# The end of a DFA and all its inputs is a blank line
+
+#
+# DFA 2.
+# DFA = {w | w has even number of 1s}
+#
+D;    0;      1;  finals.
+q1;  q1;     q2;   *.
+q2;  q2;     q1;.
+#
+000
+#accepts
+00110
+#accepts
+01111
+#accepts
+001
+0100
+1000000
+0000000000000000000000000011
+#accepts
+0100000000000000000100
+#accepts
+0100000000100000000100
+
+#
+# DFA 3.
+# DFA = {w | w has odd number of 1s}
+#
+D;0;1;finals.
+q1;q1;q2;   .
+q2;q2;q1;*.
+#
+010
+#accepts
+0010
+#accepts
+011111000
+#accepts
+001
+#accepts
+0100
+#accepts
+1000000
+#accepts
+1000000000000000000000000011
+#accepts
+0100000000000000000100
+0100000000100000000100
+#accepts
+
+#
+# DFA 4.
+# DFA = {w | w has odd number of bs}
+#
+D;a;b;finals.
+q1;q1;q2;   .
+q2;q2;q1;*.
+#
+aab
+#accepts
+aaba
+#accepts
+abbbbbaaa
+#accepts
+aab
+#accepts
+abaa
+#accepts
+baaaaaa
+#accepts
+baaaaaaaaaaaaaaaaaaaaaaaaabb
+#accepts
+abaaaaaaaaaaaaaaaaabaa
+abaaaaaaaabaaaaaaaabaa
+#accepts
+# The file ends with an end-of-file.

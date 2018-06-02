@@ -1,0 +1,44 @@
+﻿body {margin:0;padding:0;word-wrap:break-word;}
+img {border:none;}
+input {border:1px solid black;border-radius:2px;padding:0;}
+input[type=image] { border: none; }
+textarea {border:1px solid black;padding:0;}
+* {box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-ms-box-sizing:content-box;}
+a:link {color:#7c4959;text-decoration:none;}
+a:active {color:#5c3842;text-decoration:none;}
+a:hover {color:#5f152a;text-decoration:none;}
+a:visited {color:#425766;text-decoration:none;}
+.DefaultParagraph { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
+.Body { text-align:left;margin:0px 0px 12px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:12.0px;vertical-align:0; }
+.Body-1 { text-align:left;margin:0px 0px 12px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:13.0px;vertical-align:0; }
+.Body-2 { text-align:left;margin:0px 0px 12px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:700;color:#000000;background-color:transparent;font-variant:normal;font-size:13.0px;vertical-align:0; }
+.Body-3 { text-align:right;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:15.0px;vertical-align:0; }
+.Company-Details { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:13.0px;vertical-align:0; }
+.Company-Logo { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:24.0px;vertical-align:0; }
+.Feature-Text { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#bfd9d2;background-color:transparent;font-variant:normal;font-size:27.0px;vertical-align:0; }
+.Feature-Text-1 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#ffffff;background-color:transparent;font-variant:normal;font-size:19.0px;vertical-align:0; }
+.Feature-Text-2 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:32.0px;vertical-align:0; }
+.Feature-Text-3 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#ec6941;background-color:transparent;font-variant:normal;font-size:24.0px;vertical-align:0; }
+.Feature-Text-4 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:normal;color:#ffffff;background-color:transparent;font-variant:normal;font-size:24.0px;vertical-align:0; }
+.Feature-Text-5 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#ffffff;background-color:transparent;font-variant:normal;font-size:48.0px;vertical-align:0; }
+.Footer { text-align:center;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Trebuchet MS", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:12.0px;vertical-align:0; }
+.Heading { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial Black", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:24.0px;vertical-align:0; }
+.Link { text-align:center;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:700;color:#000000;background-color:transparent;font-variant:normal;font-size:11.0px;vertical-align:0; }
+a.Link:link, a:link .Link { color:#7c4959;text-decoration:none; }
+a.Link:visited, a:visited .Link { color:#425766;text-decoration:none; }
+a.Link:hover, a:hover .Link { color:#5f152a;text-decoration:none; }
+a.Link:active, a:active .Link { color:#5c3842;text-decoration:none; }
+.Link-1 { text-align:center;margin:0px;text-indent:0.0px;line-height:1px;font-family:"GothicNo13 BT", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
+a.Link-1:link, a:link .Link-1 { color:#7c4959;text-decoration:none; }
+a.Link-1:visited, a:visited .Link-1 { color:#425766;text-decoration:none; }
+a.Link-1:hover, a:hover .Link-1 { color:#5f152a;text-decoration:none; }
+a.Link-1:active, a:active .Link-1 { color:#5c3842;text-decoration:none; }
+.Link-2 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:700;color:#000000;background-color:transparent;font-variant:normal;font-size:12.0px;vertical-align:0; }
+a.Link-2:link, a:link .Link-2 { color:#7c4959;text-decoration:none; }
+a.Link-2:visited, a:visited .Link-2 { color:#425766;text-decoration:none; }
+a.Link-2:hover, a:hover .Link-2 { color:#5f152a;text-decoration:none; }
+a.Link-2:active, a:active .Link-2 { color:#5c3842;text-decoration:none; }
+.Normal { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Times New Roman", serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
+.Quote { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Trebuchet MS", sans-serif;font-style:normal;font-weight:normal;color:#f6f3b4;background-color:transparent;font-variant:normal;font-size:12.0px;vertical-align:0; }
+.Sub-Heading { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:normal;color:#2f546e;background-color:transparent;font-variant:normal;font-size:15.0px;vertical-align:0; }
+.Sub-Heading-1 { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Arial", sans-serif;font-style:normal;font-weight:normal;color:#ffffff;background-color:transparent;font-variant:normal;font-size:15.0px;vertical-align:0; }

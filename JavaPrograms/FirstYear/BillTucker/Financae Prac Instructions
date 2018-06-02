@@ -1,0 +1,9 @@
+interest = ([P x (15/100)/365] x 31)
+
+balance = P + interest - installment
+
+
+calculate interest for the month; use interest to calculate balance; calculate interest for next month; calculate new balance; repeat.
+
+#Don't round off during calculations, only at the end, to two decimals.
+Display balance at the end (with Math.round(balance * 100000) / 100000)

@@ -1,0 +1,14 @@
+1.  You would use the semicolon character.
+
+2.  It is an instruction for the assembler, telling it what to do.
+	Example 1: db, which stands for 'definite byte.
+	Example 2: mv, which is explained in the next question.
+
+3.  It is the abbreviation for 'move' and is used to move an operand from one location to another.
+
+4.  It is a 32 bit general register. It is, apparently, mostly used as a backup for the 32bit EAX register. The EAX register
+	is used to pass data from a operand and to return data to an operand.
+	
+5.  It is used to print out a string variable.
+
+6.  /Zi linkfile.lib

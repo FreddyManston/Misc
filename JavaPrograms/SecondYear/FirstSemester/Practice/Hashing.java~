@@ -1,0 +1,8 @@
+public class Hashing {
+	
+	private String hash_type;
+
+	public Hashing(hash) {
+		hash_type = hash;
+	}
+}

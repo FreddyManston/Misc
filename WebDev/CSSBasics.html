@@ -1,0 +1,65 @@
+<!-- CSS is used to style html web pages. Styling can be done in 1 of 3 ways:
+	Inline Styling:   using a style attribute in HTML elements, e.g. <h1 style=:color:blue"> Blue Heading </h1>
+	Internal Styling: using a <style> element in the HTML <head> section.    
+	External Styling: using one or more external CSS files.
+-->
+
+<!-- Styling using the popular Bootstrap responsive CSS framework
+	will figure out how wide your screen is and respond by resizing your HTML elements - hence the name Responsive Design.
+	With responsive design, there is no need to design a mobile version of your website. It will look good on devices with screens of any width.
+	You can add Bootstrap to any app by adding the following code to the top of your HTML: 
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+	Then nest all of our HTML in a div element with the class container-fluid
+-->
+<!Doctype html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div class="container-fluid">
+<head>
+	<style>
+/*	There's many ways to override CSS styles. If you use CSS libraries or external files, they may accidentally override your own CSS.
+	Order of override, from greatest to least importance:
+	* !important
+	* CSS inline style
+	* CSS #id (in order of appearance)
+	* CSS .class (in order of appearance)
+*/
+
+		/* CSS selectors*/
+		body {
+			background-color: #110926;
+    		font-family: Monospace;
+    		color: green;
+		}
+		h1 {color: grey;}
+		p {color: blue;}
+
+		/* CSS ids */
+		#orange-text {color: orange;}
+		
+		/* CSS classes */
+		.pink-text {color: pink !important;}
+		.blue-text {color: blue;}
+
+		/* Hex codes use 6 hexadecimal digits to represent colours, two each for red (R), green (G), and blue (B) components. From these, over 16 million different colours can be generated. */
+		.white-text {color: #FFFFFF;}
+		.black-text {color: #000000}
+		.red-text {color: #FF0000;}
+  		.green-text {color: #00FF00;}
+		.blue-text {color: #0000FF;}
+		.dodger-blue-text {color: #2998E4;}
+		.orange-text {color: #FFA500;}
+
+		/* rgb(0-255, 0-255, 0-255) can also be used to represent colours: */
+		.orchid-text {color: rgb(218, 112, 214);}
+  		.sienna-text {color: rgb(160, 82, 45);}
+	</style>
+</head>
+
+<body>
+	<h1 id="orange-text" class="pink-text blue-text" style="color: white">Hello World!</h1>
+	<h1> This is a grey heading </h1>
+	<p> This is an example of internal styling. </p>
+</body>
+</div>
+</html>

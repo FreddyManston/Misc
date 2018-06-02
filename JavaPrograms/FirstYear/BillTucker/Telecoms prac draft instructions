@@ -1,0 +1,37 @@
+Given a usage profile consisting of:
+*Expected consumption of 1) voice minutes
+			 2) SMSes
+			 3) mobile data
+
+Select a single service provider (Cell C/Vodacom/MTN/Telkom Mobile, etc.) and use the information to calculate and print out the cost it would incur for both prepaid and postpaid (contract) users. 
+Also, when considering different contracts, use the LG Nexus 5 as a common point, to compare.
+
+
+
+Cell C prepaid rates - call rates : 99c per minute with per second billing at less than 2c per second
+		     - data rates : 99c per MB or various range of bundles priced at 15c per MB
+		     - sms rates  :
+
+Cell C infinity prepaid - R999 once off
+			- unlimited calls to local networks
+			- 1000 local smses
+			- 1GB data
+			- expires at midnight after 30 days of purchase
+
+
+1) Get the input from the user, i.e. usage profile.
+2) Using the LG Nexus 5 is a common point, find different contracts available from a specific network provider.
+3) Compute whether it would be more affordable for the person to get the phone on contract or to purchase it prepaid.
+3a) Computation can be done the following way:	1) Workout the price that the total amount of voice minutes, SMS's and mobile data spent
+						   would procure in a month; using the standard prepaid rates provided.
+						2) Add these amounts together and multiply them by 24 (24 months = 2 years). Then add the price of the
+						   Samsung S4 mini (R4281.32). This is the price it would take to get the phone on prepaid.
+						3) Deduce whether the amount of voice minutes spent is less than the amount of voice minutes given
+						   by a particular contract offering the same phone. Do the same for SMSes and mobile data spent.
+						4) If the spent amounts of any of the 3 exceeds the amount given by the contract, workout the remainding
+						   amounts and the price it would take to pay for those remaining values.
+						5) Add that price to the price of the contract per month multiplied by 24. This is
+						   the price it would take to get the phone on contract (postpaid price).
+						6) Workout the cheaper option between the prepaid and postpaid routes.
+						
+						

@@ -1,0 +1,63 @@
+public class oHash
+{
+	private int m;
+	private int [][] table; // key value in row 1 (i = 0) and data value in row 2 (i = 1)
+
+	public oHash (int num_chairs)
+	{
+		m = num_chairs;
+		table = new int [m + 1][m + 1];
+	}
+
+	public int hash (int key)
+	{
+		return (((key * 3) % m) + 1);
+	}
+
+	public void insert (int key, int data)
+	{
+		int index = hash (key);
+
+		if (head_nodes [index].getHead() == null)
+		{
+			head_nodes [index].setHead(new Node(key, data, null));
+		}
+
+		else
+		{
+			if (!isInTable(key))
+				head_nodes [index].insertAtTail(key, data);
+			else
+				System.out.println("In table already.")
+		}
+	}
+
+	public int lookup (int key)
+	{
+		int index = hash(key);
+
+		return (head_nodes [index].getFirstOccurrence(key).getData());
+	}
+
+	public int remove (int key)
+	{
+		int index = hash(key);
+
+		return (head_nodes [index].deleteFirstOccurrence(key).getData());
+	}
+
+	public boolean isInTable (int key)
+	{
+		return head_nodes.containsItem(key);
+	}
+
+	/*public boolean isFull ()
+	{
+
+	}
+
+	public boolean isEmpty ()
+	{
+
+	}*/
+}

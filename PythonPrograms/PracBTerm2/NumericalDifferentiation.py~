@@ -1,0 +1,68 @@
+#Author: Joshua Abraham
+#Name: Differentiator
+#Description: Differentiates for sin(x) function and x^4 function
+
+
+from math import sin,cos,pi
+
+def f(x):				#} Creates a f(x) function 
+	return sin(x)			#} to be sin(x)
+
+def g(x):				#} Creates a f(x) function
+	return pow(x,4)			#} to be x^4.
+
+
+def derivativetrig(x):			#}
+					#}
+	h = 0.00000000000001		#} Uses derivative formula to calculate the answer for the derivative,
+	derivative = (f(x+h)-f(x))/h	#} using the given value of x.
+					#}
+	return derivative		#}
+	
+def derivativepoly(x):			#}
+					#}
+	h = 1/1000000000			#} Uses derivative formula to calculate the answer for the derivative,
+	derivative = (g(x+h)-g(x))/h	#} using the given value of x.
+					#}
+	return derivative		#}
+
+
+decision = input("Type 'sin' if you would like to test the sin function, \nor 'poly' if you would like to test the power to 4 function\t").lower()
+while (str(decision) != 'sin' and str(decision) != 'poly'):
+	print ("Invalid input, try again.")
+	decision = input("Type 'sin' if you would like to test the sin function, \n or 'poly' if you would like to test the power to 4 function\t").lower()
+
+for test in range(0, 11):		#}
+				#} Generates test values for x.
+	x = test*pi/10		#}
+	
+	if (str(decision) == 'sin'):
+		print("My derivative of sin(" + str(x) + "): ", derivativetrig(x), "\nActual derivative of sin(" + str(x) + "): ", cos(x), "\n") 
+
+	elif (str(decision) == 'poly'):
+		print("My Derivative of " + str(x) + "^4: ", derivativepoly(x), "\nActual derivative of " + str(x) + "^4: ", 4*x**3, "\n")
+		
+	
+
+
+
+
+
+
+
+
+
+	
+			
+		
+
+
+
+
+	
+
+
+
+
+
+
