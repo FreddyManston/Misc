@@ -7,7 +7,9 @@
 	Date: July 2018.
 */
 
+import java.lang.Math.*;
 public class PalindromeCounter{
+	
 	/*
 	// Straight-forward version:
 	static int countPalindromes(String s){
@@ -24,49 +26,55 @@ public class PalindromeCounter{
 			}
 		}
 		return count;
-	}
+	}*/
 	
-	// Presumably ptimised version:
+	
+	// Presumably optimised version:
 	static int countPalindromes(String s){
 		int s_length = s.length();
 		int count = s_length;
 
 		// Checking even length palis:
-		System.out.println("Evens:");
+		//System.out.println("Evens:");
 		for(int i = 0; i < s_length - 1; i++){
-			System.out.println(s.substring(i, i + 2));
+			//System.out.println(s.substring(i, i + 2));
 			if(isPalindrome(s.substring(i, i + 2))){
 				count++;
-				System.out.println("START:");
+				//System.out.println("START:");
 				for(int m = i - 1, n = i + 3; m >= 0 && n <= s_length; m--, n++){
-					System.out.println(s.substring(m, n));
+					//System.out.println(s.substring(m, n));
 					if(isPalindrome(s.substring(m, n))){ count++; }
 				}
-				System.out.println("END.");
+				//System.out.println("END.");
 			}
 		}
 		// Checking odd length palis:
-		System.out.println("Oddies:");
+		//System.out.println("Oddies:");
 		for(int i = 0; i < s_length - 2; i++){
-			System.out.println(s.substring(i, i + 3));
+			//System.out.println(s.substring(i, i + 3));
 			if(isPalindrome(s.substring(i, i + 3))){
 				count++;
-				System.out.println("START:");
+				//System.out.println("START:");
 				for(int m = i - 1, n = i + 4; m >= 0 && n <= s_length; m--, n++){
-					System.out.println(s.substring(m, n));
+					//System.out.println(s.substring(m, n));
 					if(isPalindrome(s.substring(m, n))){ count++; }
 				}
-				System.out.println("END.");
+				//System.out.println("END.");
 			}
 		}
 
 		return count;
-	}*/
-
+	}
+	
+	/*
+	// Credit: https://www.geeksforgeeks.org/count-palindrome-sub-strings-string/
 	// Returna total number of palindrome substring of
     // length greater then equal to 2
-    static int countPalindromes(char str[], int n)
+    static int countPalindromes(String s)
     {
+   		char str[] = s.toCharArray();
+   		int n = s.length();
+
         // creat empty 2-D matrix that counts all palindrome
         // substring. dp[i][j] stores counts of palindromic
         // substrings in st[i..j]
@@ -119,7 +127,7 @@ public class PalindromeCounter{
       
         // return total palindromic substrings
         return dp[0][n-1];
-    }
+    }*/
 
 	static boolean isPalindrome(String s){
 		for(int i = 0, j = s.length() - 1; i < j; i++, j--){ 
@@ -131,11 +139,16 @@ public class PalindromeCounter{
 	}
 
 	public static void main (String[] args){
-		final long startTime = System.nanoTime();
-		for(int i = 0; i < args.length; i++){
-			System.out.println("The amount of palindromes in '" + args[i] + "' is: " + countPalindromes(args[i].toCharArray, args[i].length()));
+		int exec_time = 0;
+		long startTime, endTime;
+
+		for(int loop = 0; loop < 1; loop++){
+			startTime = System.nanoTime();
+			for(int i = 0; i < args.length; i++){ countPalindromes(args[i]); }
+			endTime = System.nanoTime();
+			exec_time += endTime - startTime;
 		}
-		final long endTime = System.nanoTime();
-		System.out.println("Total execution time: " + (endTime - startTime) );
+		System.out.println("# of palindromes: " + countPalindromes(args[0]));
+		System.out.println("Average execution time: " + (exec_time / 1002 * Math.pow(10, -9)) + " seconds.");
 	}
 }
