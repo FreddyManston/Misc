@@ -1,0 +1,26 @@
+Source: https://stackoverflow.com/questions/5081875/ctypes-beginner
+Description: Tutorial on how to create a python wrapper for a C program library (i.e. a python program to run C program code)
+
+1) CREATE C PROGRAM: 'testlib.c'
+
+	#include <studio.h>
+
+	void myprint(void)
+
+	void myprint()
+	{
+		printf("hello world\n");
+	}
+
+2) COMPILE .c PROGRAM/LIB AS A SHARED LIBRARY: gcc -shared -Wl,-soname,testlib -o testlib.so -fPIC testlib.c
+
+3) CREATE THE PYTHON WRAPPER: 'testlibwrapper.py'
+
+	import ctypes
+
+	testlib = ctypes.CDLL('/full/path/to/testlib.so')
+	testlib.myprint()
+
+4) EXECUTE PYTHON WRAPPER: 'python testlibwrapper.py'
+
+5) SEE OUTPUT: 'Hello world'
