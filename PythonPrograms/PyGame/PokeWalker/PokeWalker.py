@@ -19,6 +19,7 @@
 #    Copyright 2015 Joshua Abraham (joshuasl8a@gmail.com)
 #
 #------------------------------------------------------------------------
+import os
 import pygame
 from pygame.locals import * # imports K_ESCAPE, K_a, etc. global names to identify event.key values
 
