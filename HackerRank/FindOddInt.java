@@ -2,6 +2,7 @@
 ** Description: Given an int array consisting of distinct values that occur an even 
 **		number of times and one value that occurs an odd number of times, finds the latter.
 ** 		E.g. [2,3,2,5,4,3,6,4,5,6,6,1,1,1,1] ... outputs 6
+		Link: https://www.hackerrank.com/contests/crescent-practice-3rd-years/challenges/find-the-unique-one
 ** Version: 1.0 
 ** Author: Joshua J. Abraham
 ** Date: December 2018

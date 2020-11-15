@@ -1,6 +1,7 @@
 /*
  * Description: Finds the only single element in an array full of doubles and one single. Does it in O(1) time with no extra memory.
  * E.g. [1, 5, 3, 7, 8, 9, 9, 5, 3, 1, 7] ..computing.. The single element is: 8
+ * Link: https://www.hackerrank.com/challenges/lonely-integer/problem
 */
 
 import java.util.concurrent.ThreadLocalRandom;

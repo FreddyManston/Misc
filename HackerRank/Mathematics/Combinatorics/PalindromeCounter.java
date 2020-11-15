@@ -4,6 +4,7 @@
 				e.g. "aaa" has 6 substrings: a, a, a, aa, aa, aaa - all of which are palindromes.
 				"abbc" has x substrings: a, b, b, c, ab, bb, bc, abb, bbc, abbc - only 5 of which are palindromes.
 				etc.
+				Link: https://www.hackerrank.com/challenges/count-palindromes/problem
 	Date: July 2018.
 */
 

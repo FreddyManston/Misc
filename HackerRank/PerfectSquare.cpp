@@ -2,6 +2,7 @@
 ** Date: Decemebr 2018
 ** Description: Checks if a given number n is a perfect square or not
 **		Uses the sum of odd numbers method
+**		Link: https://www.hackerrank.com/contests/learn-more/challenges/find-square-numbers
 */
 
 #include <iostream>

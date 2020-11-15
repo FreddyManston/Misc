@@ -1,8 +1,9 @@
 /*
-** Description: Converts decimal values to roman numerals
 ** Version: 1.0 
 ** Author: Joshua J. Abraham
 ** Date: December 2018
+** Description: Converts decimal values to roman numerals
+				Link: https://www.hackerrank.com/contests/computing-society-uwi-mona-welcome-competition/challenges/roman-numeral-converter
 ** Note: Only utilises the roman numerals up to 1000.
 ** For testing with bash, run 'javac DecimalToRoman.java && for i in {1..100}; do java DecimalToRoman $i | xargs echo $i -; done'
 */
